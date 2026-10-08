@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#2f7d32">
+    <title>Smart Chomka</title>
+    <link rel="manifest" href="./manifest.webmanifest?v=116">
+    <link rel="icon" href="./assets/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+    <link rel="stylesheet" href="./styles.css?v=116">
+    <link rel="stylesheet" href="./market.css?v=116">
+  <link rel="stylesheet" href="./market-refresh.css?v=116">
+  </head>
+  <body class="login-required">
+    <section class="login-screen" id="loginScreen" aria-label="ចុះឈ្មោះចូលប្រើ Smart Chomka">
+      <div class="login-card">
+        <div class="login-brand">
+          <span class="logo-box">
+            <img src="./assets/smart_chomka_logo.png" alt="Smart Chomka tree logo">
+          </span>
+          <div>
+            <strong>Smart Chomka</strong>
+            <p>ចុះឈ្មោះកសិករម្តង ដើម្បីចាប់ផ្តើមប្រើ AI ពិនិត្យស្លឹកទុរេន។</p>
+          </div>
+        </div>
+
+        <form class="login-form" id="loginForm">
+          <label>
+            <span>ឈ្មោះកសិករ</span>
+            <input id="loginNameInput" type="text" autocomplete="name" placeholder="បញ្ចូលឈ្មោះ" required>
+          </label>
+          <label>
+            <span>លេខទូរស័ព្ទ</span>
+            <input id="loginPhoneInput" type="tel" autocomplete="tel" placeholder="លេខទំនាក់ទំនង" required>
+          </label>
+          <button class="action-button primary" type="submit">ចូលប្រើ App</button>
+          <p class="login-note" id="loginNote">ព័ត៌មានរក្សាទុកក្នុងទូរស័ព្ទនេះ និងអាចប្រើបាន Offline។</p>
+        </form>
+      </div>
+    </section>
+
+    <main class="app-shell" id="home">
+      <header class="app-header">
+        <a class="brand-block" href="#home" data-page-target="home" aria-label="Smart Chomka home">
+          <span class="logo-box">
+            <img src="./assets/smart_chomka_logo.png" alt="Smart Chomka tree logo">
+          </span>
+          <span>
+            <strong>Smart Chomka</strong>
+            <small class="brand-status-line mode-status-pill" id="modeStatusPill" aria-live="polite">
+              <span class="mode-dot" aria-hidden="true"></span>
+              <span id="connectionStatus">កំពុងត្រៀម App...</span>
+            </small>
+          </span>
+        </a>
+
+        <nav class="top-nav" aria-label="មុខងារសំខាន់">
+          <a class="nav-item active" href="#home" data-page-target="home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-8.5z" fill="currentColor"></path></svg>
+            <span>ទំព័រដើម</span>
+          </a>
+          <a class="nav-item" href="#knowledge" data-page-target="knowledge">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21c8-3 11-9 9-18-9 2-13 8-9 18z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M8 21c2-6 5-10 9-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <span>រោគសញ្ញា</span>
+          </a>
+          <a class="nav-item" href="#history" data-page-target="history">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v14H5z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M8 9h8M8 13h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <span>របាយការណ៍</span>
+          </a>
+          <a class="nav-item" href="#ai" data-page-target="ai">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a4 4 0 0 0-4 4v5a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4z" fill="currentColor"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <span>AI ចម្ការ</span>
+          </a>
+          <a class="nav-item" href="#market" data-page-target="market"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18l-2-5H5L3 9Zm2 0v11h14V9M9 20v-7h6v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>ទីផ្សារ</span></a>
+          <a class="nav-item" href="#account" data-page-target="account">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M5 20a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            <span>គណនី</span>
+          </a>
+        </nav>
+      </header>
+
+      <section class="hero-panel" data-page-view="home" aria-label="Smart Chomka smart weather warning">
+        <img class="hero-art" src="./assets/farmer_remote_iot_ai.png" alt="កសិករប្រើទូរស័ព្ទពិនិត្យស្លឹកទុរេន និងប្រព័ន្ធទឹក IoT">
+        <div class="weather-warning-card" id="weatherWarningCard">
+          <div class="weather-card-heading">
+            <span class="hero-kicker">Smart Weather Warning</span>
+          </div>
+
+          <form class="weather-form" id="weatherForm">
+            <label class="weather-field" for="weatherLocationSelect">
+              <span>ទីតាំងចម្ការ</span>
+              <select id="weatherLocationSelect" required>
+                <option value="">ជ្រើសរើសខេត្ត/ក្រុង</option>
+              </select>
+            </label>
+            <button class="action-button primary" type="submit" id="fetchWeatherButton">
+              <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3v2.5M12 18.5V21M4.2 5.8 6 7.6M18 16.4l1.8 1.8M3 12h2.5M18.5 12H21M4.2 18.2 6 16.4M18 7.6l1.8-1.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"></circle>
+              </svg>
+              <span>ពិនិត្យអាកាសធាតុ</span>
+            </button>
+          </form>
+
+          <div class="weather-metrics hidden" id="weatherMetrics">
+            <article>
+              <span class="weather-metric-label">កម្ដៅ <small>Temperature</small></span>
+              <strong id="weatherTemperature">--</strong>
+            </article>
+            <article>
+              <span class="weather-metric-label">ភ្លៀង <small>Rain forecast</small></span>
+              <strong id="weatherRain">--</strong>
+            </article>
+            <article>
+              <span class="weather-metric-label">សំណើម <small>Humidity</small></span>
+              <strong id="weatherHumidity">--</strong>
+            </article>
+            <article>
+              <span class="weather-metric-label">ហានិភ័យជំងឺ <small>Disease risk</small></span>
+              <strong id="weatherRiskLevel">--</strong>
+            </article>
+          </div>
+
+          <p class="weather-status" id="weatherStatus">ជ្រើសរើសទីតាំងចម្ការរបស់អ្នកជាមុនសិន។</p>
+        </div>
+
+      </section>
+
+      <section class="cta-band scan-entry" id="startScanBand" data-page-view="home">
+        <span class="round-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c4.5 3.1 6.8 6.7 6.8 10.7 0 4.4-3 7.3-6.8 7.3s-6.8-2.9-6.8-7.3C5.2 9.7 7.5 6.1 12 3z" fill="currentColor" opacity=".2"></path><path d="M12 21V9m0 6 4-4m-4 4-4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+        <div>
+          <h2>ចាប់ផ្តើមពិនិត្យស្លឹកទុរេន</h2>
+          <p>ថតរូបថ្មី ឬនាំចូលរូបស្លឹកពីទូរស័ព្ទ។</p>
+        </div>
+        <div class="cta-actions">
+          <label class="action-button light" for="cameraInput">
+            <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M7.5 7.2 9.1 5h5.8l1.6 2.2H19a2 2 0 0 1 2 2v8.1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.2a2 2 0 0 1 2-2h2.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+              <circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            </svg>
+            <span>ថតរូបស្លឹក</span>
+          </label>
+          <label class="action-button light" for="fileInput">
+            <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M12 3v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <path d="m7 8 5-5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <span>នាំចូលរូប</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="feature-strip" data-page-view="home" aria-label="មុខងារ Smart Chomka">
+        <article>
+          <span class="round-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 7.2 9.1 5h5.8l1.6 2.2H19a2 2 0 0 1 2 2v8.1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.2a2 2 0 0 1 2-2h2.5z" fill="none" stroke="currentColor" stroke-width="2"></path><circle cx="12" cy="13" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle></svg>
+          </span>
+          <strong>ថតរូប</strong>
+          <p>ប្រើកាមេរ៉ាទូរស័ព្ទ</p>
+        </article>
+        <article>
+          <span class="round-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h4l2-7 4 14 2-7h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+          </span>
+          <strong>AI វិភាគ</strong>
+          <p>បែងចែក ១០ ប្រភេទ</p>
+        </article>
+        <article>
+          <span class="round-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9 16l10-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </span>
+          <strong>ណែនាំភ្លាមៗ</strong>
+          <p>សកម្មភាពបន្ទាប់</p>
+        </article>
+        <article>
+          <span class="round-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"></path><path d="M16 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+          </span>
+          <strong>សំឡេងអាន</strong>
+          <p>ជួយអ្នកអានតិច</p>
+        </article>
+        <article>
+          <span class="round-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h7a3 3 0 0 1 3 3V20a3 3 0 0 0-3-3H5V4.5z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M19 4.5h-4a3 3 0 0 0-3 3V20a3 3 0 0 1 3-3h4V4.5z" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+          </span>
+          <strong>ឯកសារយោង</strong>
+          <p>PDF និងវីដេអូ</p>
+        </article>
+      </section>
+
+      <section class="usage-guide" data-page-view="home" aria-label="របៀបប្រើ Smart Chomka">
+        <div class="section-heading">
+          <div>
+            <h2>របៀបប្រើ App ជាមួយរូបភាព</h2>
+            <p>មើលតាមរូបភាពខាងក្រោម ដើម្បីពិនិត្យស្លឹកទុរេនបានលឿន និងងាយស្រួល។</p>
+          </div>
+        </div>
+        <div class="guide-grid">
+          <article class="guide-card">
+            <div class="guide-media">
+              <img src="./assets/disease_samples/healthy_leaf.jpg" alt="រូបស្លឹកទុរេនសម្រាប់ថត ឬនាំចូល">
+              <span class="guide-number">1</span>
+              <span class="guide-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 7.2 9.1 5h5.8l1.6 2.2H19a2 2 0 0 1 2 2v8.1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.2a2 2 0 0 1 2-2h2.5z" fill="none" stroke="currentColor" stroke-width="2"></path><circle cx="12" cy="13" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle></svg>
+              </span>
+            </div>
+            <div class="guide-copy">
+              <h3>ថត ឬនាំចូលរូបស្លឹក</h3>
+              <p>ជ្រើសរើសស្លឹកមួយសន្លឹកដែលឃើញចំណុច ឬស្នាមច្បាស់។</p>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <div class="guide-media guide-phone-preview">
+              <img src="./assets/disease_samples/phomopsis_leaf_spot.jpg" alt="មើលរូបស្លឹកមុនពិនិត្យ">
+              <span class="guide-number">2</span>
+              <span class="mock-ai-button">ពិនិត្យជំងឺ</span>
+            </div>
+            <div class="guide-copy">
+              <h3>មើលរូបមុនពិនិត្យ</h3>
+              <p>បើរូបមិនច្បាស់ សូមថតម្ដងទៀតមុនចុចពិនិត្យ។</p>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <div class="guide-media guide-result-preview">
+              <img src="./assets/disease_samples/algal_leaf_spot.jpg" alt="លទ្ធផល AI បង្ហាញជំងឺស្លឹក">
+              <span class="guide-number">3</span>
+              <span class="mock-result-card">
+                <b>លទ្ធផល AI</b>
+                <small>ភាពជឿជាក់ 93%</small>
+              </span>
+            </div>
+            <div class="guide-copy">
+              <h3>ទទួលលទ្ធផល AI</h3>
+              <p>App បង្ហាញឈ្មោះជំងឺ ភាពជឿជាក់ និងសកម្មភាពបន្ទាប់។</p>
+            </div>
+          </article>
+
+          <article class="guide-card">
+            <div class="guide-media">
+              <img src="./assets/pesticide_safety_farmer.jpg" alt="កសិករពាក់សម្ភារៈការពារពេលបាញ់ថ្នាំ">
+              <span class="guide-number">4</span>
+              <span class="guide-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"></path><path d="M16 8.5a4 4 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              </span>
+            </div>
+            <div class="guide-copy">
+              <h3>ស្តាប់ និងធ្វើតាមការណែនាំ</h3>
+              <p>ប្រើសំឡេងអាន ហើយពិនិត្យថ្នាំ និងសុវត្ថិភាពមុនបាញ់។</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-heading" data-page-view="knowledge" aria-label="ចំណងជើងរោគសញ្ញា">
+        <div>
+          <span>មជ្ឈមណ្ឌលចំណេះដឹង</span>
+          <h2>រោគសញ្ញា និងការណែនាំចម្ការ</h2>
+          <p>មើលឧទាហរណ៍ជំងឺ សកម្មភាពថែទាំ និងអ្វីត្រូវប្រុងប្រយ័ត្នពេលអាកាសធាតុសើម។</p>
+        </div>
+      </section>
+
+      <section class="dashboard-grid" id="knowledgePanel" data-page-view="knowledge">
+        <article class="disease-gallery">
+          <div class="section-heading">
+            <div>
+              <h2>រោគសញ្ញាទុរេន</h2>
+              <p>ឧទាហរណ៍ស្លឹក ផ្លែ ដើម និងមគ្គុទ្ទេសក៍បន្ថែមសម្រាប់បញ្ហាសំខាន់ៗក្នុងចម្ការ។</p>
+            </div>
+            <button class="section-start-link" type="button" data-page-target="home">ចាប់ផ្តើមពិនិត្យ</button>
+          </div>
+          <div class="sample-grid" id="diseaseSampleGrid">
+            <button class="disease-sample-card" type="button" data-disease-key="PHOMOPSIS_LEAF_SPOT">
+              <img src="./assets/disease_samples/phomopsis_leaf_spot.jpg" alt="ជំងឺអុចស្លឹកដោយសារផ្សិត">
+              <strong>ជំងឺអុចស្លឹកដោយសារផ្សិត</strong>
+              <small>Phomopsis</small>
+            </button>
+            <button class="disease-sample-card" type="button" data-disease-key="LEAF_BLIGHT">
+              <img src="./assets/disease_samples/leaf_blight.jpg" alt="រលាកស្លឹក">
+              <strong>រលាកស្លឹក</strong>
+              <small>Leaf blight</small>
+            </button>
+            <button class="disease-sample-card" type="button" data-disease-key="ALGAL_LEAF_SPOT">
+              <img src="./assets/disease_samples/algal_leaf_spot.jpg" alt="អុចស្លឹកដោយសារាយ">
+              <strong>អុចស្លឹកដោយសារាយ</strong>
+              <small>Algal spot</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="ANTHRACNOSE">
+              <img src="./assets/disease_samples/anthracnose.jpg" alt="ជំងឺអាន់ត្រាក់ណូស">
+              <strong>ជំងឺអាន់ត្រាក់ណូស</strong>
+              <small>Anthracnose</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="CANKER_DISEASE">
+              <img src="./assets/disease_samples/canker_disease.jpg" alt="ជំងឺ Canker">
+              <strong>ជំងឺ Canker</strong>
+              <small>Canker disease</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="FRUIT_ROT">
+              <img src="./assets/disease_user/durian_fruit_rot_user.png" alt="ផ្លែទុរេនរលួយ">
+              <strong>ផ្លែទុរេនរលួយ</strong>
+              <small>Fruit rot</small>
+            </button>
+            <button class="disease-sample-card" type="button" data-disease-key="ALLOCARIDARA_ATTACK">
+              <img src="./assets/disease_samples/allocaridara_attack.jpg" alt="សត្វល្អិតជញ្ជក់ស្លឹក">
+              <strong>សត្វល្អិតជញ្ជក់ស្លឹក</strong>
+              <small>Allocaridara</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="MEALYBUG_INFESTATION">
+              <img src="./assets/disease_samples/mealybug_infestation.jpg" alt="សត្វល្អិតម្សៅ">
+              <strong>សត្វល្អិតម្សៅ</strong>
+              <small>Mealybug</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="PINK_DISEASE">
+              <img src="./assets/disease_samples/pink_disease.jpg" alt="ជំងឺផ្សិតពណ៌ផ្កាឈូក">
+              <strong>ជំងឺផ្សិតពណ៌ផ្កាឈូក</strong>
+              <small>Pink disease</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="PHYTOPHTHORA_ROOT_FOOT_ROT">
+              <img src="./assets/disease_guides_real/phytophthora_root_foot_rot.jpg" alt="រូបពិតរោគរលួយគល់ ឬឫស Phytophthora">
+              <strong>រលួយគល់/ឫស</strong>
+              <small>Phytophthora · Guide</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="SOOTY_MOLD">
+              <img src="./assets/disease_guides_real/sooty_mold_mealybug_risk.jpg" alt="រូបពិតសត្វល្អិតម្សៅលើផ្លែ ដែលអាចបង្កផ្សិតខ្មៅ">
+              <strong>ម្សៅ/ផ្សិតខ្មៅ</strong>
+              <small>Mealybug risk · Guide</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="STEM_BORER_DAMAGE">
+              <img src="./assets/disease_guides_real/stem_borer_damage.jpg" alt="រូបពិតដើមទុរេនមានស្នាមចោះ ឬរបួស">
+              <strong>ចោះដើម/មែក</strong>
+              <small>Stem borer · Guide</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="FRUIT_BORER_DAMAGE">
+              <img src="./assets/disease_guides_real/fruit_borer_damage.jpg" alt="រូបពិតដង្កូវ ឬស្នាមខូចលើផ្លែទុរេន">
+              <strong>ចោះផ្លែ/គ្រាប់</strong>
+              <small>Fruit borer · Guide</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="THRIPS_MITE_DAMAGE">
+              <img src="./assets/disease_guides_real/thrips_mite_damage.jpg" alt="រូបពិតត្រីប ឬចៃក្រហមលើស្លឹក">
+              <strong>ត្រីប/ចៃក្រហម</strong>
+              <small>Thrips/Mite · Guide</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="RHIZOCTONIA_LEAF_BLIGHT">
+              <img src="./assets/disease_guides_real/leaf_blight_fungal_reference.jpg" alt="រូបពិតរោគសញ្ញារលាកស្លឹក">
+              <strong>រលាកស្លឹក</strong>
+              <small>Leaf blight · Guide</small>
+            </button>
+            <button class="disease-sample-card guide-only" type="button" data-disease-key="COLLETOTRICHUM_LEAF_SPOT">
+              <img src="./assets/disease_guides_real/colletotrichum_leaf_spot.jpg" alt="រូបពិតចំណុចស្លឹក Colletotrichum">
+              <strong>Colletotrichum</strong>
+              <small>Leaf spot · Guide</small>
+            </button>
+            <button class="disease-sample-card" type="button" data-disease-key="HEALTHY_LEAF">
+              <img src="./assets/disease_samples/healthy_leaf.jpg" alt="ស្លឹកមានសុខភាពល្អ">
+              <strong>ស្លឹកមានសុខភាពល្អ</strong>
+              <small>Healthy</small>
+            </button>
+          </div>
+        </article>
+
+        <article class="care-panel" id="sprayTips">
+          <h2>អនុសាសន៍ & ការព្យាបាល</h2>
+          <ul class="care-list">
+            <li>
+              <span class="round-icon small"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M12 4v16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span>
+              <div><strong>សម្អាតស្លឹកឆ្លង</strong><p>ដកស្លឹកខូចចេញ និងកុំទុកស្លឹកជ្រុះក្រោមដើម។</p></div>
+            </li>
+            <li>
+              <span class="round-icon small"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span>
+              <div><strong>កាត់មែកឲ្យមានខ្យល់</strong><p>បន្ថយសំណើមក្នុងគុម្ព ដើម្បីកាត់បន្ថយការរាលដាល។</p></div>
+            </li>
+            <li>
+              <span class="round-icon small"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12c4-6 8-6 12 0-4 6-8 6-12 0z" fill="none" stroke="currentColor" stroke-width="2"></path><circle cx="12" cy="12" r="2" fill="currentColor"></circle></svg></span>
+              <div><strong>ពិនិត្យឲ្យប្រាកដ</strong><p>ថតច្រើនស្លឹក និងសួរអ្នកជំនាញ មុនប្រើថ្នាំ។</p></div>
+            </li>
+            <li>
+              <span class="round-icon small"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21c8-3 11-9 9-18-9 2-13 8-9 18z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M8 21c2-6 5-10 9-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span>
+              <div><strong>ប្រើថ្នាំទទួលខុសត្រូវ</strong><p>អានស្លាក/QR ពាក់ PPE និងគោរព PHI/REI។</p></div>
+            </li>
+          </ul>
+        </article>
+
+      </section>
+
+      <section class="disease-detail-panel hidden" id="diseaseDetailPanel" data-page-view="knowledge" aria-live="polite"></section>
+
+      <section class="page-heading" data-page-view="history" aria-label="ចំណងជើងរបាយការណ៍">
+        <div>
+          <span>កំណត់ត្រា និងរបាយការណ៍</span>
+          <h2>របាយការណ៍ពិនិត្យស្លឹក</h2>
+          <p>មើលរូបដើម លទ្ធផល AI ភាពជឿជាក់ ថ្ងៃម៉ោង ការណែនាំព្យាបាល និងកំណត់ចំណាំចម្ការ។</p>
+        </div>
+      </section>
+
+      <section class="history-card history-page-card" id="historyPanel" data-page-view="history">
+        <div class="section-heading">
+          <div>
+            <h2>របាយការណ៍ថ្មីៗ</h2>
+            <p>ចុចលើរបាយការណ៍ណាមួយ ដើម្បីមើលលម្អិត ទាញយកជា PDF ឬចែករំលែក។</p>
+          </div>
+          <button class="history-clear-button hidden" id="clearHistoryButton" type="button">លុបរបាយការណ៍</button>
+        </div>
+        <div class="history-list" id="historyList">
+          <p>មិនទាន់មានការពិនិត្យ។</p>
+        </div>
+      </section>
+
+      <form class="farm-care-form report-notes-form" id="farmCareForm" data-page-view="history">
+        <div class="section-heading compact">
+          <div>
+            <h3>កំណត់ចំណាំកសិករ</h3>
+            <p>កត់ត្រាស្ថានភាពទឹក ថ្នាំ ថ្ងៃពិនិត្យបន្ទាប់ និងអ្វីដែលបានឃើញក្នុងចម្ការ។</p>
+          </div>
+          <span class="account-badge" id="farmCareStatus">មិនទាន់រក្សាទុក</span>
+        </div>
+        <div class="farm-care-grid">
+          <label>
+            <span>ស្ថានភាពទឹក</span>
+            <select id="waterStatusInput">
+              <option value="">ជ្រើសរើស</option>
+              <option value="គ្រប់គ្រាន់">គ្រប់គ្រាន់</option>
+              <option value="ត្រូវស្រោចបន្ថែម">ត្រូវស្រោចបន្ថែម</option>
+              <option value="សំណើមខ្ពស់">សំណើមខ្ពស់</option>
+            </select>
+          </label>
+          <label>
+            <span>ថ្ងៃបាញ់ថ្នាំចុងក្រោយ</span>
+            <input id="lastSprayInput" type="date">
+          </label>
+          <label>
+            <span>ថ្ងៃពិនិត្យបន្ទាប់</span>
+            <input id="nextCheckInput" type="date">
+          </label>
+          <label>
+            <span>ដំណាក់កាលដំណាំ</span>
+            <select id="cropStageInput">
+              <option value="">ជ្រើសរើស</option>
+              <option value="ស្លឹកខ្ចី">ស្លឹកខ្ចី</option>
+              <option value="ចេញផ្កា">ចេញផ្កា</option>
+              <option value="កាន់ផ្លែ">កាន់ផ្លែ</option>
+              <option value="ក្រោយប្រមូលផល">ក្រោយប្រមូលផល</option>
+            </select>
+          </label>
+        </div>
+        <label class="farm-note-label">
+          <span>ចំណាំបន្ថែម</span>
+          <textarea id="farmNoteInput" rows="3" placeholder="ឧ. ស្លឹកខ្លះមានចំណុចត្នោត ក្រោយភ្លៀងពីរថ្ងៃ"></textarea>
+        </label>
+        <button class="action-button primary" type="submit">
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M5 12.5 9.2 17 19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span>រក្សាទុកកំណត់ចំណាំ</span>
+        </button>
+        <div class="farm-care-summary" id="farmCareSummary">
+          <p>មិនទាន់មានកំណត់ចំណាំចម្ការ។</p>
+        </div>
+      </form>
+
+      <section class="irrigation-page" id="irrigationPanel" data-page-view="irrigation" aria-live="polite">
+        <div class="irrigation-hero">
+          <div>
+            <span class="section-kicker">Remote Irrigation</span>
+            <h1>បញ្ជា និងតាមដានប្រព័ន្ធទឹក</h1>
+            <p>មើលស្ថានភាពទឹក បើក/បិទ pump និង valve ពីទូរស័ព្ទ។ ទិន្នន័យនេះរៀបចំសម្រាប់ភ្ជាប់ ESP32 តាម MQTT Cloud។</p>
+          </div>
+          <div class="irrigation-status-pill" id="irrigationConnectionBadge">
+            <span class="mode-dot" aria-hidden="true"></span>
+            <strong>Online</strong>
+          </div>
+        </div>
+
+        <div class="irrigation-layout">
+          <section class="irrigation-control-card">
+            <div class="irrigation-toolbar">
+              <label for="irrigationProfileSelect">
+                <span>Farm profile</span>
+                <select id="irrigationProfileSelect"></select>
+              </label>
+              <div class="irrigation-mini-status" id="irrigationCommandStatus">Ready</div>
+            </div>
+
+            <article class="irrigation-cycle-card">
+              <div>
+                <span class="metric-label">កំពុងស្រោច</span>
+                <strong id="irrigationRunTimer">08:42</strong>
+              </div>
+              <span class="zone-chip" id="irrigationActiveZone">Zone 2</span>
+              <div class="irrigation-progress-track" aria-hidden="true">
+                <span id="irrigationProgressBar"></span>
+              </div>
+              <p id="irrigationSubtitle">នៅសល់ 8 នាទី • Pump 2 បើក • Valve 1,3,8 បើក</p>
+            </article>
+
+            <div class="irrigation-metrics">
+              <article>
+                <span>ធុង T1</span>
+                <strong id="irrigationTankLevel">74%</strong>
+                <small>កម្រិតទឹក</small>
+              </article>
+              <article>
+                <span>ដីសើម</span>
+                <strong id="irrigationSoilMoisture">38%</strong>
+                <small>Soil moisture</small>
+              </article>
+              <article>
+                <span>ថ្ម Node</span>
+                <strong id="irrigationNodeBattery">82%</strong>
+                <small>Sensor battery</small>
+              </article>
+            </div>
+
+            <div class="irrigation-actions">
+              <button class="action-button primary" id="irrigationAutoButton" type="button">
+                <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7L8 5z" fill="currentColor"></path></svg>
+                <span>ចាប់ផ្តើម Auto</span>
+              </button>
+              <button class="action-button danger" id="irrigationStopButton" type="button">
+                <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M8 12h8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg>
+                <span>បញ្ឈប់ទាំងអស់</span>
+              </button>
+            </div>
+
+            <div class="irrigation-section-title">
+              <h2>គ្រោងការជូនដំណឹង</h2>
+              <span id="irrigationAlertCount">0 alerts</span>
+            </div>
+            <div class="irrigation-alert-list" id="irrigationAlertList"></div>
+          </section>
+
+          <aside class="irrigation-side-card">
+            <h2>Zone Control</h2>
+            <p>បើក valve តាមតំបន់។ ESP32 គួរតែរក្សា safety delay នៅក្នុង controller។</p>
+            <div class="zone-grid" id="irrigationZoneGrid"></div>
+
+            <h2>Pump Control</h2>
+            <div class="pump-grid" id="irrigationPumpGrid"></div>
+          </aside>
+        </div>
+
+        <section class="irrigation-info-grid">
+          <article>
+            <h3>Device profile</h3>
+            <p id="irrigationConfigSummary">Loading profile...</p>
+          </article>
+          <article>
+            <h3>Remote Control Safety</h3>
+            <ol class="safety-list">
+              <li>Owner login only for pump/valve control.</li>
+              <li>STOP button must always be visible in manual and auto mode.</li>
+              <li>Alert when tank is low, node is offline, or signal is weak.</li>
+            </ol>
+          </article>
+          <article>
+            <h3>Data from system</h3>
+            <p>Main ESP32 sends live status to cloud. Soil nodes can send ESP-NOW to the main ESP32 first, so the phone does not need to be near the farm.</p>
+          </article>
+        </section>
+      </section>
+
+      <section class="online-advisor-panel live-talk-panel ai-assistant-page" id="onlineAdvisorPanel" data-page-view="ai">
+        <div class="ai-assistant-hero">
+          <div class="ai-title-row">
+            <span class="ai-brain-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M8.5 4.5c-2 0-3.5 1.5-3.5 3.3 0 .7.2 1.3.5 1.8A3.6 3.6 0 0 0 4 12.5c0 1.8 1.3 3.2 3 3.5.2 2 1.6 3.5 3.5 3.5h.8V4.5H8.5zM15.5 4.5c2 0 3.5 1.5 3.5 3.3 0 .7-.2 1.3-.5 1.8a3.6 3.6 0 0 1 1.5 2.9c0 1.8-1.3 3.2-3 3.5-.2 2-1.6 3.5-3.5 3.5h-.8V4.5h2.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+            <div>
+              <span class="hero-kicker">AI ចម្ការ</span>
+              <h2>សួរអំពីចម្ការទុរេន</h2>
+              <p id="onlineAdvisorStatus">ពិនិត្យស្ថានភាពអ៊ីនធឺណិត...</p>
+            </div>
+            <span class="account-badge" id="onlineAdvisorBadge">កំពុងពិនិត្យ</span>
+          </div>
+
+          <form class="live-talk-text-form ai-composer ai-chat-composer" id="liveTalkTextForm">
+            <div class="ai-composer-main">
+              <label for="liveTalkTextInput">សួរ AI ចម្ការ</label>
+              <textarea id="liveTalkTextInput" rows="3" autocomplete="off" placeholder="សរសេរសំណួររបស់អ្នកនៅទីនេះ..."></textarea>
+            </div>
+            <div class="ai-composer-actions" aria-label="ជម្រើសសួរ AI">
+              <label class="ai-icon-button" for="cameraInput" title="ថតរូបស្លឹក">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 7.2 9.1 5h5.8l1.6 2.2H19a2 2 0 0 1 2 2v8.1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.2a2 2 0 0 1 2-2h2.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"></circle></svg>
+              </label>
+              <button class="ai-icon-button hold-mic-button" id="startLiveTalkButton" type="button" title="ចុចឲ្យជាប់ដើម្បីនិយាយ" aria-label="ចុចឲ្យជាប់ដើម្បីនិយាយ">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a4 4 0 0 0-4 4v5a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4z" fill="currentColor"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                <span>ចុចឲ្យជាប់</span>
+              </button>
+              <label class="ai-icon-button" for="fileInput" title="នាំចូលរូប">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 11.6 12 21a5.2 5.2 0 0 1-7.4-7.4l9.7-9.7a3.5 3.5 0 0 1 5 5l-9.7 9.7a1.8 1.8 0 0 1-2.6-2.6l8.8-8.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </label>
+              <button class="ai-send-button" type="submit" title="ផ្ញើសំណួរ">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5 21 12 3.5 3.5 6 11l8 1-8 1-2.5 7.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+                <span>ផ្ញើ</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="quick-voice-prompts ai-quick-prompts" id="liveTalkPromptGrid">
+            <button type="button" data-live-question="តើរោគសញ្ញានេះគឺជាអ្វី?">រោគអ្វី?</button>
+            <button type="button" data-live-question="តើគួរដាក់ជី និងកាត់មែកទុរេនយ៉ាងដូចម្តេច?">ជី?</button>
+            <button type="button" data-live-question="តើសត្វល្អិតណាដែលគួរប្រុងប្រយ័ត្ន?">សត្វល្អិត?</button>
+            <button type="button" data-live-question="តើអាកាសធាតុថ្ងៃនេះមានហានិភ័យជំងឺទេ?">អាកាសធាតុ?</button>
+            <button type="button" data-live-question="ត្រូវប្រើថ្នាំអ្វី និងប្រើដោយសុវត្ថិភាពយ៉ាងដូចម្តេច?">ថ្នាំ?</button>
+          </div>
+          <div class="live-talk-transcript ai-answer-box" id="liveTalkTranscript" aria-live="polite">
+            <strong>AI:</strong> ខ្ញុំត្រៀមស្តាប់សំណួរទូទៅអំពីចម្ការទុរេន។ អ្នកអាចសួរអំពីទឹក ជី ជំងឺ សត្វល្អិត អាកាសធាតុ ឬលទ្ធផលរូបភាព។
+          </div>
+        </div>
+
+        <section class="ai-card ai-guide-strip">
+          <h3>មុខងារដែលសួរញឹកញាប់</h3>
+          <div class="ai-guide-grid" id="aiGuideGrid">
+            <button type="button" data-live-question="តើរោគសញ្ញាស្លឹកទុរេនណាដែលគួរប្រុងប្រយ័ត្ន?">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21c8-3 11-9 9-18-9 2-13 8-9 18z" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+              <span>រោគសញ្ញា?</span>
+              <small>សួរអំពីស្លឹក ផ្លែ និងដើម</small>
+            </button>
+            <button type="button" data-live-question="តើត្រូវដាក់ជីទុរេន និងថែដីយ៉ាងដូចម្តេច?">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10V9H7v11zM9 9V6h6v3M10 14h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+              <span>ជី?</span>
+              <small>ជី សារធាតុចិញ្ចឹម និងដី</small>
+            </button>
+            <button type="button" data-live-question="តើបាញ់ថ្នាំយ៉ាងដូចម្តេចឲ្យមានសុវត្ថិភាព?">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v6c0 4.5-3.2 7.5-8 9-4.8-1.5-8-4.5-8-9V6l8-3z" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+              <span>ការពារ?</span>
+              <small>PPE ស្លាកថ្នាំ និង PHI/REI</small>
+            </button>
+            <button type="button" data-page-target="knowledge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h9a3 3 0 0 1 3 3v13H9a3 3 0 0 0-3-3V4z" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+              <span>មគ្គុទ្ទេសក៍</span>
+              <small>រូបភាព និងថ្នាំប្រើប្រាស់</small>
+            </button>
+          </div>
+        </section>
+
+        <div class="live-talk-controls ai-secondary-controls">
+          <button class="action-button" id="repeatLiveTalkButton" type="button">ស្តាប់ម្តងទៀត</button>
+          <button class="action-button" id="stopLiveTalkButton" type="button">
+            <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+              <path d="M6.2 17.8 17.8 6.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
+            </svg>
+            <span>បញ្ឈប់</span>
+          </button>
+          <a class="action-button" href="./pdf-viewer.html?file=.%2Fassets%2Freferences%2Fdurian_avocado_pest_guide_kh.pdf&source=https%3A%2F%2Felibrary.maff.gov.kh%2Fassets%2Ffiles%2Fbooks%2Ff9bb05bf6cfbf8fe8b2223623d5458be1702973176.pdf&title=PDF%20Guide" data-open-reference>ឯកសារ PDF</a>
+        </div>
+      </section>
+
+
+      <section class="market-page" id="marketPanel" data-page-view="market">
+        <div class="market-hero"><div><span class="market-eyebrow">SMART CHOMKA MARKET</span><h1>ទីផ្សារកសិករ</h1><p>ទុរេន ជី ថ្នាំ និងឧបករណ៍សម្រាប់ចម្ការរបស់អ្នក</p></div><div class="market-header-actions"><button type="button" class="market-primary" id="marketCartShortcut">កន្ត្រកទំនិញ <span id="marketCartBadge">0</span></button><button type="button" data-new>＋ ដាក់លក់ទុរេន</button></div></div>
+        <p class="market-local-note">កំណែសាកល្បង៖ ទំនិញរក្សាទុកតែក្នុងឧបករណ៍នេះ។ មិនទាន់មានការផ្សាយទៅអ្នកប្រើផ្សេង ការបញ្ជាទិញ ឬការទូទាត់ប្រាក់ទេ។</p>
+        <div class="market-sections" role="group" aria-label="ផ្នែកទីផ្សារ"><button type="button" data-market-section="suppliers" aria-pressed="true">ផលិតផលកសិកម្ម</button><button type="button" data-market-section="shop" aria-pressed="false">ទំនិញមានលក់</button><button type="button" data-market-section="durian" aria-pressed="false">ទុរេនរបស់ខ្ញុំ</button></div>
+        <section id="marketShopPanel" hidden aria-label="Smart Chomka Shop"></section>
+        <div id="marketSupplierPanel">
+          <details class="supplier-directory-wrap"><summary>មើលអ្នកផ្គត់ផ្គង់ទាំង 4</summary><div id="supplierDirectory" class="supplier-directory"></div></details>
+          <div class="supplier-topline"><div><h2>ជ្រើសរើសផលិតផល</h2><p>បញ្ជីយោងពីគេហទំព័រអ្នកផ្គត់ផ្គង់។ មិនទាន់បានបញ្ជាក់ភាពជាដៃគូទេ។</p></div><span class="supplier-snapshot">កាតាឡុក · 17 កញ្ញា 2026</span></div>
+          <div class="supplier-search-row"><label class="supplier-select-label">អ្នកផ្គត់ផ្គង់<select id="supplierSelect"></select></label>
+          <label class="supplier-search-label">ស្វែងរកផលិតផល<input type="search" id="supplierSearch" placeholder="ឈ្មោះផលិតផល សមាសធាតុ ឬទំហំកញ្ចប់"></label>
+          </div><div class="supplier-category-tabs" role="group" aria-label="ប្រភេទផលិតផល"><button type="button" data-supplier-category="" aria-pressed="true">ទាំងអស់ <span>9</span></button><button type="button" data-supplier-category="fertilizer" aria-pressed="false">ជីកសិកម្ម <span>5</span></button><button type="button" data-supplier-category="medicine" aria-pressed="false">ថ្នាំកសិកម្ម <span>4</span></button><button type="button" data-supplier-category="tools" aria-pressed="false">ឧបករណ៍ <span>3</span></button></div>
+          <p id="supplierAvailabilityNote" role="status"></p><p id="supplierCount" class="supplier-count" aria-live="polite"></p><div id="supplierGrid" class="supplier-grid"></div>
+          <p class="supplier-attribution">ឈ្មោះ រូបភាព និងព័ត៌មានផលិតផលយោងពីគេហទំព័រអ្នកផ្គត់ផ្គង់នីមួយៗ។ បញ្ជីដំបូងនេះមិនមែនជាកាតាឡុកទាំងមូលទេ។ តម្លៃ ស្តុក និងការដឹកជញ្ជូនត្រូវបញ្ជាក់ជាមួយអ្នកផ្គត់ផ្គង់។</p>
+          <dialog id="supplierDetail" class="market-dialog supplier-dialog" aria-labelledby="supplierDetailTitle"><header><span>ANGKOR GREEN</span><button type="button" data-supplier-close aria-label="បិទ">✕</button></header><div id="supplierDetailBody"></div></dialog>
+        </div>
+        <div id="marketDurianPanel" hidden><div class="market-toolbar"><label>ស្វែងរកទំនិញ<input id="marketSearch" type="search" placeholder="ឈ្មោះទំនិញ អ្នកលក់ ឬទីតាំង"></label><label>ទីតាំង<select id="marketLocation"><option value="">គ្រប់ទីតាំង</option></select></label><label>តម្រៀប<select id="marketSort"><option value="newest">ថ្មីបំផុត</option><option value="name">តាមឈ្មោះ</option><option value="price-asc">តម្លៃទាបទៅខ្ពស់</option><option value="price-desc">តម្លៃខ្ពស់ទៅទាប</option></select></label></div>
+        <div class="market-comparison-controls"><label>ប្រៀបធៀបតម្លៃក្នុងឯកតាតែមួយ<select id="marketPriceBasis"><option value="">គ្រប់តម្លៃ / ឯកតា</option><option value="KHR|គីឡូក្រាម">៛ / គីឡូក្រាម</option><option value="USD|គីឡូក្រាម">$ / គីឡូក្រាម</option><option value="KHR|ផ្លែ">៛ / ផ្លែ</option><option value="USD|ផ្លែ">$ / ផ្លែ</option></select></label><label class="market-stock-filter"><input id="marketAvailable" type="checkbox"> មានស្តុកប៉ុណ្ណោះ</label></div><p class="market-compare-note">ប្រៀបធៀបតម្លៃ ពូជ ថ្ងៃប្រមូលផល និងទីតាំង ដើម្បីជ្រើសរើសអ្នកលក់ដែលសមស្រប។</p><p id="marketSortHint" role="status"></p><p id="marketCount" aria-live="polite"></p><p id="marketStatus" role="status"></p><div id="marketGrid" class="market-grid"></div></div>
+        <dialog id="marketEditor" class="market-dialog" aria-labelledby="marketEditorTitle"><header><h2 id="marketEditorTitle">ដាក់លក់ទុរេន</h2><button type="button" data-close aria-label="បិទ">✕</button></header>
+        <form id="marketForm"><div class="market-form-grid">
+          <label class="market-form-wide">ឈ្មោះទំនិញ<input name="title" maxlength="100" required></label>
+          <input type="hidden" name="category" value="durian"><p class="market-form-wide market-local-note">កសិករអាចដាក់លក់ទុរេន។ ថ្នាំ និងជីគ្រប់គ្រងដោយដៃគូផ្គត់ផ្គង់។</p><label>ពូជទុរេន<input name="variety" maxlength="80" placeholder="ឧ. ម៉នថង"></label>
+          <label>ឯកតា<select name="unit"><option value="គីឡូក្រាម">គីឡូក្រាម</option><option value="ផ្លែ">ផ្លែ</option></select></label>
+          <label>តម្លៃ<input name="price" type="number" min="0.01" max="1000000000" step="0.01" inputmode="decimal" required></label>
+          <label>រូបិយប័ណ្ណ<select name="currency"><option value="KHR">រៀល (៛)</option><option value="USD">ដុល្លារ ($)</option></select></label>
+          <label>ថ្ងៃប្រមូលផល<input name="harvest" type="date"></label><label>បរិមាណមានលក់ (តាមឯកតាខាងលើ)<input name="quantity" type="number" min="0.01" max="10000000" step="0.01"></label><label class="market-form-wide">ទីតាំង / ខេត្ត<input name="location" maxlength="120" required></label>
+          <label>ឈ្មោះអ្នកលក់<input name="seller" maxlength="80" autocomplete="name" required></label><label>លេខទូរស័ព្ទ<input name="phone" type="tel" maxlength="20" autocomplete="tel" required></label>
+          <label class="market-form-wide">ព័ត៌មានបន្ថែម<textarea name="description" maxlength="2000" placeholder="គុណភាពទុរេន ការដឹកជញ្ជូន និងលក្ខខណ្ឌលក់"></textarea></label>
+          <label class="market-form-wide">រូបភាពទំនិញ (JPG, PNG, WebP · 8 MB)<input id="marketPhoto" type="file" accept="image/jpeg,image/png,image/webp"></label><img id="marketPhotoPreview" class="market-photo-preview market-form-wide" alt="រូបភាពទំនិញ" hidden>
+        </div><p id="marketFormStatus" role="status"></p><footer><button type="button" data-close>បោះបង់</button><button id="marketSave" class="market-primary" type="submit">រក្សាទុកក្នុងឧបករណ៍</button></footer></form></dialog>
+        <dialog id="marketDetail" class="market-dialog" aria-labelledby="marketDetailTitle"><header><span>ព័ត៌មានទំនិញ</span><button type="button" data-close aria-label="បិទ">✕</button></header><div id="marketDetailContent"></div></dialog>
+      </section>
+
+      <section class="account-panel account-profile-page" id="accountPanel" data-page-view="account">
+        <div class="account-page-card">
+          <div class="account-page-heading">
+            <div>
+              <h2>គណនី</h2>
+              <p>គ្រប់គ្រងព័ត៌មានគណនី និងការកំណត់។</p>
+            </div>
+            <button class="account-outline-button" type="button" data-account-logout>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6H6v12h4M14 8l4 4-4 4M8 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span>ចាកចេញពីគណនី</span>
+            </button>
+          </div>
+
+          <form class="account-form account-inline-form" id="accountForm">
+            <label>
+              <span>ឈ្មោះកសិករ</span>
+              <input id="farmerNameInput" type="text" autocomplete="name" placeholder="បញ្ចូលឈ្មោះ" required>
+            </label>
+            <label>
+              <span>លេខទូរស័ព្ទ</span>
+              <input id="farmerPhoneInput" type="tel" autocomplete="tel" placeholder="លេខទំនាក់ទំនង" required>
+            </label>
+            <button class="action-button primary" type="submit">រក្សាទុកគណនី</button>
+          </form>
+
+          <div class="account-save-alert hidden" id="accountSaveAlert" role="status" aria-live="polite">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 9.2 17 19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <span>បានរក្សាទុកគណនី</span>
+          </div>
+
+          <article class="account-summary account-profile-card" id="accountSummary">
+            <span class="profile-avatar-wrap">
+              <span class="profile-avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M5.2 20a6.8 6.8 0 0 1 13.6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              </span>
+              <button class="avatar-camera-button" type="button" id="editAccountAvatarButton" data-account-edit aria-label="កែប្រែគណនី">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 7.2 9.1 5h5.8l1.6 2.2H19a2 2 0 0 1 2 2v8.1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.2a2 2 0 0 1 2-2h2.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"></circle></svg>
+              </button>
+            </span>
+            <div class="profile-details">
+              <strong>មិនទាន់មានព័ត៌មានកសិករ</strong>
+              <p>បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ រួចចុចរក្សាទុក។</p>
+            </div>
+            <button class="account-outline-button account-edit-button" id="editAccountButton" type="button" data-account-edit>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11a2.5 2.5 0 0 0-4-4L4 16v4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+              <span>កែប្រែគណនី</span>
+            </button>
+          </article>
+
+          <div class="account-dashboard account-metrics-row">
+            <article class="account-stat-card account-stat-inline">
+              <span class="stat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7.5 7.2 9.1 5h5.8l1.6 2.2H19a2 2 0 0 1 2 2v8.1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.2a2 2 0 0 1 2-2h2.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"></circle></svg>
+              </span>
+              <div>
+                <strong id="accountScanCount">0</strong>
+                <span>ចំនួនការពិនិត្យ</span>
+                <small>សរុប</small>
+              </div>
+            </article>
+            <article class="account-stat-card account-stat-inline">
+              <span class="stat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7V3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M14 3v5h5M9 13h6M9 17h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              </span>
+              <div>
+                <strong id="accountReportCount">0</strong>
+                <span>ចំនួនរបាយការណ៍</span>
+                <small>បានរក្សាទុក</small>
+              </div>
+            </article>
+            <article class="account-stat-card account-stat-inline">
+              <span class="stat-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              </span>
+              <div>
+                <span>សកម្មភាពចុងក្រោយ</span>
+                <strong id="accountLastInspectTime">មិនទាន់មាន</strong>
+                <small id="accountLastInspectDate">ចាប់ផ្តើមពិនិត្យស្លឹក</small>
+              </div>
+            </article>
+          </div>
+
+          <section class="farm-profile-card" id="farmProfileCard">
+            <div class="farm-profile-heading">
+              <div>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9M7 21h10M12 9c-4-3-7-3-9 0 2 4 5 5 9 3M12 9c4-3 7-3 9 0-2 4-5 5-9 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <h3>ព័ត៌មានកសិកម្ម</h3>
+              </div>
+              <button class="account-outline-button farm-edit-toggle" type="button" id="editFarmProfileButton" data-farm-edit>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11a2.5 2.5 0 0 0-4-4L4 16v4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+                <span>កែប្រែព័ត៌មាន</span>
+              </button>
+            </div>
+            <div class="farm-info-grid">
+              <dl>
+                <div><dt>ឈ្មោះចម្ការ</dt><dd id="farmInfoName">Smart Chomka Durian Farm</dd></div>
+                <div><dt>ខេត្ត / ស្រុក</dt><dd id="farmInfoLocation">ជ្រើសទីតាំងអាកាសធាតុ</dd></div>
+                <div><dt>ប្រភេទដំណាំ</dt><dd id="farmInfoCrop">Durian</dd></div>
+                <div><dt>ប្រភេទទុរេន</dt><dd id="farmInfoVariety">Monthong</dd></div>
+              </dl>
+              <dl>
+                <div><dt>ចំនួនដើមឈើ</dt><dd id="farmInfoTrees">120 ដើម</dd></div>
+                <div><dt>ផ្ទៃដីសរុប</dt><dd id="farmInfoArea">2.5 ហិកតា</dd></div>
+                <div><dt>អាយុដើមជាមធ្យម</dt><dd id="farmInfoAge">4 ឆ្នាំ</dd></div>
+                <div><dt>ប្រព័ន្ធទឹក</dt><dd id="farmInfoIrrigation">ទឹកអូតូ / IoT</dd></div>
+              </dl>
+            </div>
+            <form class="farm-profile-form hidden" id="farmProfileForm">
+              <label><span>ឈ្មោះចម្ការ</span><input id="farmProfileNameInput" type="text" placeholder="ឧ. ចម្ការទុរេន khemra"></label>
+              <label><span>ខេត្ត / ស្រុក</span><input id="farmProfileLocationInput" type="text" placeholder="ឧ. កំពត / ទឹកឈូ"></label>
+              <label><span>ប្រភេទដំណាំ</span><input id="farmProfileCropInput" type="text" placeholder="ឧ. Durian"></label>
+              <label><span>ប្រភេទទុរេន</span><input id="farmProfileVarietyInput" type="text" placeholder="ឧ. Monthong"></label>
+              <label><span>ចំនួនដើមឈើ</span><input id="farmProfileTreesInput" type="number" min="0" step="1" placeholder="ឧ. 120"></label>
+              <label><span>ផ្ទៃដីសរុប</span><input id="farmProfileAreaInput" type="text" placeholder="ឧ. 2.5 ហិកតា"></label>
+              <label><span>អាយុដើមជាមធ្យម</span><input id="farmProfileAgeInput" type="text" placeholder="ឧ. 4 ឆ្នាំ"></label>
+              <label><span>ប្រព័ន្ធទឹក</span><input id="farmProfileIrrigationInput" type="text" placeholder="ឧ. IoT / ដំណក់ទឹក"></label>
+              <button class="action-button primary" type="submit">រក្សាទុកព័ត៌មានចម្ការ</button>
+            </form>
+          </section>
+
+          <section class="account-settings-card">
+            <button type="button" data-page-target="history">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7V3z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M14 3v5h5M9 13h6M9 17h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span><strong>របាយការណ៍</strong><small>មើលប្រវត្តិរូបស្លឹក លទ្ធផល និងចំណាំ</small></span>
+              <b aria-hidden="true">›</b>
+            </button>
+            <button type="button" id="exportDataButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="m7.5 9.5 4.5 4.5 4.5-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span><strong>ទិន្នន័យ និងភាពឯកជន</strong><small>ទាញយកទិន្នន័យគណនី និងរបាយការណ៍</small></span>
+              <b aria-hidden="true">›</b>
+            </button>
+            <button type="button" data-page-target="ai">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M8 9h8M8 13h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span><strong>ជំនួយ និងការគាំទ្រ</strong><small>សួរ AI ចម្ការ ឬមើលមគ្គុទ្ទេសក៍</small></span>
+              <b aria-hidden="true">›</b>
+            </button>
+          </section>
+
+          <div class="account-tools account-danger-zone">
+            <button class="account-outline-button" type="button" data-account-logout>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6H6v12h4M14 8l4 4-4 4M8 12h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span>ចាកចេញពីគណនី</span>
+            </button>
+            <button class="account-delete-button" id="resetAccountButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 11v6M14 11v6M8 7l1-3h6l1 3M7 7l1 14h8l1-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span>លុបគណនី</span>
+              <small>ការលុបគណនីគឺជាអចិន្ត្រៃយ៍ និងមិនអាចត្រឡប់វិញបាន</small>
+            </button>
+          </div>
+          <button class="hidden" id="clearAccountHistoryButton" type="button" aria-hidden="true" tabindex="-1">លុបរបាយការណ៍ពិនិត្យ</button>
+        </div>
+      </section>
+
+      <input id="cameraInput" class="file-control" type="file" accept="image/*" capture="environment">
+      <input id="fileInput" class="file-control" type="file" accept="image/*">
+
+      <section class="scan-workspace" id="scanPanel" data-page-view="home" aria-live="polite">
+        <div class="preview-card hidden" id="previewCard">
+          <img id="previewImage" alt="រូបស្លឹកដែលបានបញ្ចូល">
+          <button id="predictButton" type="button" disabled>
+            <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"></circle>
+              <path d="m15.2 15.2 4.8 4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+            <span>ពិនិត្យជំងឺ</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="result-panel hidden" id="resultPanel" data-page-view="home history" aria-live="polite">
+        <div class="result-topline">លទ្ធផលព្យាករ</div>
+        <div class="result-title" id="resultTitle"></div>
+        <div class="result-confidence hidden" id="resultConfidence"></div>
+
+        <div class="probability-list hidden" id="probabilityList"></div>
+
+        <article class="recommendation" id="recommendationBox"></article>
+        <section class="medicine-section" id="medicineSection"></section>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="មុខងារខាងក្រោម">
+      <a class="active" href="#home" data-page-target="home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-8.5z" fill="currentColor"></path></svg>
+        <span>ទំព័រដើម</span>
+      </a>
+      <a href="#knowledge" data-page-target="knowledge">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21c8-3 11-9 9-18-9 2-13 8-9 18z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M8 21c2-6 5-10 9-14" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+        <span>រោគសញ្ញា</span>
+      </a>
+      <a href="#history" data-page-target="history">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v14H5z" fill="none" stroke="currentColor" stroke-width="2"></path><path d="M8 9h8M8 13h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        <span>របាយការណ៍</span>
+      </a>
+      <a href="#ai" data-page-target="ai">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a4 4 0 0 0-4 4v5a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4z" fill="currentColor"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        <span>AI ចម្ការ</span>
+      </a>
+      <a href="#market" data-page-target="market"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18l-2-5H5L3 9Zm2 0v11h14V9M9 20v-7h6v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>ទីផ្សារ</span></a>
+          <a href="#account" data-page-target="account">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M5 20a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        <span>គណនី</span>
+      </a>
+    </nav>
+
+    <script src="./vendor/onnxruntime-web/ort.wasm.min.js"></script>
+    <script src="./realtime-config.js?v=116"></script>
+    <script type="module" src="./app.js?v=116"></script>
+    <script type="module" src="./market.js?v=116"></script>
+    <script type="module" src="./supplier-market.js?v=116"></script>
+    <script type="module" src="./commerce-shop.js?v=116"></script>
+  </body>
+</html>
+
+
+
+
+

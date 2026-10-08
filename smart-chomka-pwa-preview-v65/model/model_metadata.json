@@ -1,0 +1,26 @@
+{
+  "model_name": "efficientnet_b0",
+  "img_size": 224,
+  "class_names": [
+    "ALGAL_LEAF_SPOT",
+    "ALLOCARIDARA_ATTACK",
+    "HEALTHY_LEAF",
+    "LEAF_BLIGHT",
+    "PHOMOPSIS_LEAF_SPOT"
+  ],
+  "input_name": "input",
+  "output_name": "logits",
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "source_checkpoint": "outputs\\efficientnet_b0\\best_model.pt"
+}

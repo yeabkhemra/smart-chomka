@@ -1,0 +1,66 @@
+/* Farmer marketplace: compact navigation, prominent product actions. */
+body[data-page="market"]{background:#f5f7f4}
+#marketPanel{--market-ink:#173a29;--market-muted:#677669;--market-border:#dce4d8;color:var(--market-ink);padding-top:12px}
+#marketPanel .market-hero{background:transparent;border:0;border-radius:0;padding:12px 0 24px;align-items:center;gap:24px}
+#marketPanel .market-hero h1{font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.5;margin:8px 0 6px;letter-spacing:-.03em}
+#marketPanel .market-hero p{font-size:.9rem;margin:0;color:var(--market-muted)}
+.market-header-actions{display:flex;gap:10px;flex-shrink:0}
+#marketPanel .market-header-actions button{min-height:48px;white-space:nowrap}
+#marketCartBadge{display:inline-grid;place-items:center;min-width:24px;height:24px;margin-left:8px;border-radius:20px;background:#fff;color:#245a37;font-size:.78rem}
+#marketPanel .market-sections{margin:0 0 24px;display:flex;gap:0;border-bottom:1px solid var(--market-border);background:transparent;border-radius:0}
+#marketPanel .market-sections button{flex:1;padding:17px 12px;background:transparent;color:#637365;border:0;border-bottom:3px solid transparent;border-radius:0;font-size:.9rem;font-weight:700;min-height:55px}
+#marketPanel .market-sections button[aria-pressed="true"]{color:#245a37;border-bottom-color:#245a37;background:#eaf0e3}
+#marketPanel .supplier-banner{display:none}
+#marketPanel .supplier-directory-wrap{margin:0 0 18px;background:white;border:1px solid var(--market-border);padding:14px 18px;font-size:.82rem}
+#marketPanel .supplier-topline{margin:24px 0 18px}
+#marketPanel .supplier-topline h2{font-size:1.35rem;line-height:1.6}
+#marketPanel .supplier-topline p{margin:6px 0 0;line-height:1.7}
+#marketPanel .supplier-snapshot{border:0;padding:0;font-size:.72rem;color:#71806d}
+.supplier-search-row{display:grid;grid-template-columns:1fr 2fr;gap:16px;background:white;padding:20px;border:1px solid var(--market-border);border-radius:14px}
+#marketPanel .supplier-select-label{max-width:none;margin:0}
+#marketPanel label{font-size:.83rem;font-weight:600;color:#3e5643}
+#marketPanel input,#marketPanel select{min-height:48px;border-radius:9px;border-color:#d4dfd1;background:#fff}
+#marketPanel .supplier-category-tabs{margin:18px 0 12px;gap:10px}
+#marketPanel .supplier-category-tabs button{border-radius:24px;padding:10px 18px;min-height:44px;font-size:.83rem;box-shadow:none}
+#marketPanel .supplier-category-tabs button[aria-pressed="true"]{background:#245a37;border-color:#245a37;color:white}
+#marketPanel .supplier-category-tabs button[aria-pressed="true"] span{background:#40734e;color:white}
+#supplierAvailabilityNote{font-size:.8rem;line-height:1.8;color:#6b7869;margin:12px 0}
+#marketPanel .supplier-count{font-weight:600;margin:16px 0}
+#marketPanel .supplier-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+#marketPanel .supplier-product-card{border:1px solid #dce4d8;border-radius:16px;box-shadow:0 4px 16px #1a452706;transition:box-shadow .18s,transform .18s}
+#marketPanel .supplier-product-card:hover{box-shadow:0 8px 24px #1a452713;transform:translateY(-2px)}
+#marketPanel .supplier-product-image{height:230px;background:#fff;border-bottom:1px solid #eef1eb}
+#marketPanel .supplier-product-image img{max-height:none;mix-blend-mode:normal}
+#marketPanel .supplier-product-body{padding:20px;gap:4px}
+#marketPanel .supplier-product-body h3{font-size:1.02rem;line-height:1.55;margin:8px 0;min-height:3.1em;color:#203e2c}
+#marketPanel .supplier-product-body small{font-size:.72rem;line-height:1.6}
+#marketPanel .supplier-pack{font-size:.8rem}
+#marketPanel .supplier-quote{font-size:1.02rem;margin:14px 0 10px}
+#marketPanel .supplier-product-body .supplier-buy{background:#235c39;color:white;justify-content:center;font-size:.9rem!important;min-height:48px;border-radius:10px;margin-top:auto}
+#marketPanel .supplier-product-body .supplier-buy:disabled{background:#eef2e9;color:#728069;border-color:#e0e6d9;opacity:1}
+#marketPanel .supplier-product-body>button[data-supplier-product]{border:0;background:transparent;color:#497052;min-height:42px;font-size:.78rem!important;margin-top:0;padding:8px 0;justify-content:center;gap:8px}
+#marketPanel .supplier-category-badge{top:14px;left:14px;padding:5px 12px;background:#edf3e6;color:#4e7434;border:1px solid #e2eacb}
+#marketPanel .supplier-category-badge.medicine{background:#fff5e7;color:#946829;border-color:#f4e7d2}
+#marketPanel .supplier-category-badge.tools{background:#eaf3f7;color:#3f7186;border-color:#d8e6ec}
+#marketPanel .shop-heading{background:transparent;padding:0;border-radius:0;margin:8px 0 24px}
+#marketPanel .shop-heading .market-eyebrow{display:none}
+#marketPanel .shop-heading p{font-size:.84rem;color:#637365}
+.product-buy-actions{display:grid;grid-template-columns:1fr 48px;gap:8px;margin-top:auto}
+#marketPanel .product-buy-actions button{min-height:48px;justify-content:center;font-size:.9rem!important}
+#marketPanel .shop-description{max-height:5.4em;overflow:auto;color:#6b7869}
+#marketPanel .shop-cart{border:1px solid #c9d9c0;background:#f3f7ed}
+#marketPanel .market-toolbar,#marketPanel .market-comparison-controls{background:#fff;border-radius:12px;padding:18px}
+#marketPanel .market-empty{padding:32px 24px;background:white;border:1px solid var(--market-border)}
+@media(min-width:1400px){#marketPanel .supplier-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){#marketPanel .market-hero{display:flex;align-items:flex-start;flex-direction:column;gap:16px;padding:8px 0 18px}#marketPanel .market-hero h1{font-size:1.8rem}.market-header-actions{width:100%}.market-header-actions>button:first-child{margin-left:auto}#marketPanel .market-hero p{font-size:.83rem;line-height:1.8}#marketPanel .market-sections button{font-size:.76rem;padding:13px 6px}#marketPanel .supplier-topline{display:block;margin:18px 0 14px}#marketPanel .supplier-topline p{font-size:.75rem}.supplier-search-row{grid-template-columns:1fr;padding:14px;gap:12px}.supplier-search-label{grid-row:1}#marketPanel .supplier-category-tabs{gap:7px;display:grid;grid-template-columns:repeat(2,1fr)}#marketPanel .supplier-category-tabs button{justify-content:center;font-size:.78rem;padding:9px 10px}#marketPanel .supplier-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#marketPanel .supplier-product-image{height:170px}#marketPanel .supplier-product-body{padding:12px;gap:2px}#marketPanel .supplier-product-body h3{font-size:.86rem;min-height:3.1em}#marketPanel .supplier-product-body .supplier-buy{font-size:.72rem!important;min-height:46px;padding:8px 4px}#marketPanel .supplier-category-badge{font-size:.62rem;top:9px;left:9px;padding:4px 7px}#marketPanel .supplier-quote{font-size:.83rem}#marketPanel .supplier-product-body small{font-size:.65rem}#marketPanel .product-buy-actions{grid-template-columns:1fr}.product-buy-actions>button:last-child{display:none}#marketPanel .product-buy-actions button{font-size:.8rem!important}#marketPanel .supplier-product-body>button[data-supplier-product]{font-size:.7rem!important}#marketPanel .shop-heading{display:flex;align-items:center}#marketPanel .shop-heading h2{font-size:1.2rem}#marketPanel .shop-heading>button{font-size:.7rem;padding:10px}#marketPanel .shop-filters{grid-template-columns:1fr}}
+#marketPanel .market-hero{min-height:310px;padding:34px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:20px;margin-bottom:22px;border:1px solid #dbe3cf;border-radius:20px;background-color:#edf2e4;background-image:linear-gradient(90deg,rgba(244,247,233,.96) 0%,rgba(244,247,233,.9) 32%,rgba(244,247,233,.12) 63%,transparent 75%),url('./assets/market-farmer-hero.png');background-size:cover;background-position:center;overflow:hidden}
+#marketPanel .market-hero>div:first-child{max-width:52%}
+#marketPanel .market-hero .market-header-actions{width:auto;max-width:55%;flex-wrap:wrap}
+#marketPanel .market-hero p{color:#3e5b40;line-height:1.85}
+#marketPanel .market-hero h1{color:#134b29}
+@media(max-width:700px){#marketPanel .market-hero{min-height:0;gap:14px;padding:235px 22px 22px;background-image:linear-gradient(0deg,#edf2e4 0%,#edf2e4 31%,rgba(237,242,228,0) 57%),url('./assets/market-farmer-hero.png');background-size:100% 100%,auto 245px;background-repeat:no-repeat;background-position:center,right top;border-radius:16px}#marketPanel .market-hero>div:first-child{max-width:100%}#marketPanel .market-hero .market-header-actions{max-width:100%;width:100%}#marketPanel .market-header-actions>button:first-child{margin-left:0}#marketPanel .market-hero h1{margin:6px 0;font-size:1.75rem}}
+/* Strong, readable market typography across Khmer and Latin text. */
+#marketPanel{font-weight:700}
+#marketPanel :is(h1,h2,h3,h4,strong,b){font-weight:800}
+#marketPanel :is(p,span,small,label,button,input,select,textarea,summary,a,li,dt,dd){font-weight:700}
+#marketPanel input::placeholder,#marketPanel textarea::placeholder{font-weight:600}
