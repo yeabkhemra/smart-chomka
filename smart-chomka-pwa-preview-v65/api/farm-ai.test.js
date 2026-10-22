@@ -27,12 +27,15 @@ test('uses the server-side Bedrock key without sending it to the client', async 
 
   try {
     const res = response();
-    await handler({ method: 'POST', body: { question: 'សួស្តី' } }, res);
+    await handler({ method: 'POST', body: { question: 'តើខ្ញុំគួរស្រោចទឹកចម្ការទុរេនពេលណា?' } }, res);
     assert.equal(res.statusCode, 200);
     assert.equal(request.url, 'https://bedrock-mantle.ap-southeast-2.api.aws/v1/chat/completions');
     assert.equal(request.options.headers.Authorization, 'Bearer test-bedrock-key');
     assert.equal(JSON.parse(request.options.body).model, 'openai.gpt-oss-20b');
     assert.ok(res.body.answer);
+    assert.deepEqual(res.body.knowledgeSources.map(source => source.id), ['durian-irrigation']);
+    assert.deepEqual(res.body.products, []);
+    assert.ok(JSON.parse(request.options.body).messages[0].content.includes('Never advise watering already wet'));
     assert.ok(!JSON.stringify(res.body).includes('test-bedrock-key'));
   } finally {
     global.fetch = previousFetch;

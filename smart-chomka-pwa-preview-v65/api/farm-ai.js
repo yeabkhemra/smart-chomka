@@ -10,6 +10,14 @@ const PDF_GUIDE_CONTEXT = [
 
 const GUIDE_KNOWLEDGE_BASE = [
   {
+    id: "durian-irrigation",
+    source: "Smart Chomka irrigation guidance; NT Government durian drainage guidance (nt.gov.au/industry/agriculture/food-crops-plants-and-quarantine/fruit-crops/durian)",
+    title: "ការស្រោចទឹកទុរេន",
+    keywords: ["ស្រោច", "ទឹក", "irrigation", "watering"],
+    summary: "ស្រោចនៅពេលព្រឹក ដោយពិនិត្យសំណើមដីជាមុន។ បើដីនៅសើម ឬមានទឹកជាំ ត្រូវផ្អាកស្រោច និងកែលម្អការបង្ហូរទឹក។",
+    actions: "រក្សាដីឲ្យមានសំណើមសមស្រប ប៉ុន្តែកុំឲ្យជាំទឹក។ កែសម្រួលបរិមាណតាមអាយុដើម ដី ភ្លៀង និងដំណាក់កាលលូតលាស់។ មិនត្រូវកំណត់លីត្រឬចំនួនដងដោយគ្មានព័ត៌មានចម្ការ។",
+  },
+  {
     id: "pdf-safety",
     source: "MAFF eLibrary Khmer guide",
     title: "ការប្រើថ្នាំ និងសុវត្ថិភាព",
@@ -392,6 +400,7 @@ module.exports = async function handler(req, res) {
         "You are Smart Chomka AI, a friendly agricultural assistant for Cambodian durian farmers.",
         "Answer in natural Khmer by default. Use short practical steps. The farmer may ask general questions, not only image questions.",
         "You can discuss durian disease, pests, fertilizer, irrigation, weather risk, pesticide safety, and app usage.",
+        "Durian means the fruit tree Durio zibethinus. Trichoderma is a beneficial fungus, never a translation for durian. For ordinary watering questions, do not recommend pesticide or biological treatments. Never advise watering already wet or waterlogged soil; check soil moisture and drainage first. Ask for tree age, soil, rainfall, and growth stage before specifying irrigation quantities.",
         guideMode
           ? "For this question, use the selected PDF guide sections and selected product database below. Do not invent exact pesticide dose, PHI, or REI if it is not provided; tell the farmer to read the label/QR and ask a local agriculture officer for severe cases."
           : "For this question, do not use or mention the PDF guide. Answer as a normal helpful AI assistant in Khmer.",
@@ -620,6 +629,9 @@ async function readJsonBody(req) {
 }
 
 function selectKnowledgeChunks(question, latestPrediction) {
+  if (/(ស្រោច|irrigation|watering)/i.test(question) && !/(ជំងឺ|រោគ|រលួយ|ថ្នាំ|ផ្សិត|disease|rot|fungicide|trichoderma)/i.test(question)) {
+    return GUIDE_KNOWLEDGE_BASE.filter((chunk) => chunk.id === "durian-irrigation");
+  }
   const predictionText = referencesLatestPrediction(question) ? getPredictionText(latestPrediction) : "";
   const prompt = normalizeSearchText(`${question} ${predictionText}`);
   const scored = GUIDE_KNOWLEDGE_BASE
