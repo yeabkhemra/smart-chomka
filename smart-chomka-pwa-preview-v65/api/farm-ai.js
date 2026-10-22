@@ -515,6 +515,10 @@ function cleanAnswerForClient(value = "") {
 }
 
 function ensureHelpfulAnswer({ answer = "", question = "", products = [], relevantKnowledge = [], guideMode = true, structuredMode = true }) {
+  if (relevantKnowledge.length === 1 && relevantKnowledge[0].id === "durian-irrigation") {
+    const guide = relevantKnowledge[0];
+    return `សង្ខេប៖ ${guide.summary}\nធ្វើឥឡូវនេះ៖ ${guide.actions}\nពិនិត្យបន្ថែម៖ តើដើមទុរេនមានអាយុប៉ុន្មាន? ដីប្រភេទអ្វី? ថ្មីៗនេះមានភ្លៀងទេ? ដើមកំពុងចេញស្លឹក ចេញផ្កា ឬកាន់ផ្លែ?`;
+  }
   const medicineQuestion = isMedicineOrFertilizerQuestion(question);
   let output = cleanAnswerForClient(answer);
 

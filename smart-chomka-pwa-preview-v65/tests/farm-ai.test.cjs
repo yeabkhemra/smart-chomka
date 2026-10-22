@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const handler = require('./farm-ai');
+const handler = require('../api/farm-ai');
 
 function response() {
   return {
@@ -22,7 +22,7 @@ test('uses the server-side Bedrock key without sending it to the client', async 
   let request;
   global.fetch = async (url, options) => {
     request = { url, options };
-    return { ok: true, json: async () => ({ choices: [{ message: { content: 'សួស្តី' } }] }) };
+    return { ok: true, json: async () => ({ choices: [{ message: { content: 'Water 20 L every 2 days.' } }] }) };
   };
 
   try {
@@ -33,6 +33,8 @@ test('uses the server-side Bedrock key without sending it to the client', async 
     assert.equal(request.options.headers.Authorization, 'Bearer test-bedrock-key');
     assert.equal(JSON.parse(request.options.body).model, 'openai.gpt-oss-20b');
     assert.ok(res.body.answer);
+    assert.ok(!res.body.answer.includes('20'));
+    assert.ok(res.body.answer.includes('ទឹកជាំ'));
     assert.deepEqual(res.body.knowledgeSources.map(source => source.id), ['durian-irrigation']);
     assert.deepEqual(res.body.products, []);
     assert.ok(JSON.parse(request.options.body).messages[0].content.includes('Never advise watering already wet'));
@@ -45,3 +47,4 @@ test('uses the server-side Bedrock key without sending it to the client', async 
     else process.env.OPENAI_API_KEY = previousLegacyKey;
   }
 });
+

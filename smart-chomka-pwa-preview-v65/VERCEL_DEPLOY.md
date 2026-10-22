@@ -7,7 +7,7 @@ Set these in Vercel Project Settings > Environment Variables:
 ```text
 BEDROCK_API_KEY=your_private_bedrock_key_here
 OPENAI_BASE_URL=https://bedrock-mantle.ap-southeast-2.api.aws/v1
-OPENAI_MODEL=openai.gpt-oss-20b
+OPENAI_MODEL=openai.gpt-oss-120b
 AZURE_SPEECH_KEY=your_private_azure_speech_key_here
 AZURE_SPEECH_REGION=southeastasia
 AZURE_SPEECH_VOICE=km-KH-SreymomNeural
