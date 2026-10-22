@@ -356,10 +356,10 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.BEDROCK_API_KEY || process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return res.status(503).json({
-      error: "OPENAI_API_KEY is not configured on the server.",
+      error: "BEDROCK_API_KEY is not configured on the server.",
     });
   }
 

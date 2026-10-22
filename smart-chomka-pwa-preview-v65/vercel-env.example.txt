@@ -1,7 +1,7 @@
 Set these in Vercel Project Settings > Environment Variables.
 Do not put real API keys in app.js, index.html, or APK assets.
 
-OPENAI_API_KEY=your_private_key_here
+BEDROCK_API_KEY=your_private_bedrock_key_here
 OPENAI_BASE_URL=https://bedrock-mantle.ap-southeast-2.api.aws/v1
 OPENAI_MODEL=openai.gpt-oss-20b
 
