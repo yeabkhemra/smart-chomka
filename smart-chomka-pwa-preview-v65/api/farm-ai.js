@@ -223,7 +223,8 @@ const GENERAL_KNOWLEDGE_CHUNK_IDS = [
 
 const KHMER_TEXT_FIXES = [
   [/ជម្ងឺ/g, "ជំងឺ"],
-  [/ឌូរៀន|ដូរៀន|ធុរេន/g, "ទុរេន"],
+  [/ដូរីយ៉ាន|ឌូរីយ៉ាន|ដូរីយ៉ែន|ឌូរៀន|ដូរៀន|ធុរេន/g, "ទុរេន"],
+  [/កសិករទុរេន/g, "កសិករដាំទុរេន"],
   [/អេអាយ|អាយអាយ/g, "AI"],
   [/ភីអេចអាយ/gi, "PHI"],
   [/ភី អេច អាយ/gi, "PHI"],
@@ -377,6 +378,14 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Question is required." });
   }
 
+  if (/^(?:hi|hello|hey|សួស្តី|ជម្រាបសួរ)(?:\s*(?:b|bong|បង))?[\s!។,.?]*$/iu.test(question)) {
+    return res.status(200).json({
+      answer: "សួស្តីបង! ខ្ញុំជា AI ចម្ការ។ បងអាចសួរខ្ញុំអំពីការថែទាំទុរេន ជី ទឹក ជំងឺ និងសត្វល្អិតបាន។ តើបងចង់សួរអំពីអ្វី?",
+      products: [], knowledgeSources: [],
+      model: process.env.OPENAI_MODEL || DEFAULT_MODEL,
+    });
+  }
+
   const guideMode = shouldUseGuideContext(question, body.latestPrediction);
   const structuredMode = shouldUseStructuredFarmAnswer(question, body.latestPrediction);
   const products = shouldUseProductContext(question, body.latestPrediction)
@@ -412,6 +421,7 @@ module.exports = async function handler(req, res) {
           : "For general questions, answer directly in 2-5 short natural sentences. Do not use disease-report headings.",
         "If the farmer asks for more medicine, give 2-5 examples from the selected product database and explain which disease/pest group each product is for. Do not give exact dose unless it is on the label.",
         "Use these Khmer spellings: ជំងឺ, រោគសញ្ញា, ថ្នាំ, ជី, សុវត្ថិភាព, សំណើម, ទុរេន, ចម្ការ, កសិករ.",
+        "Use familiar Cambodian Khmer, short sentences, and natural grammar. Say កសិករដាំទុរេន (durian growers) and ការស្រោចទឹក (irrigation). Never transliterate durian as ដូរីយ៉ាន. Avoid literal translations or invented Khmer terms. If a technical Khmer word is uncertain, keep the established scientific name in parentheses instead.",
         "Important Khmer accuracy: translate fungus as ផ្សិត. Never write ស្វីស for fungus. Do not claim bacteria as the cause unless the selected source clearly says it.",
         "Avoid mixing English except product names, model names, disease names in parentheses, PPE, PHI, REI, QR, and common chemical names.",
         "Plain text only. Do not use Markdown headings, Markdown tables, pipe characters, HTML tags, code blocks, stars, or **bold** markers.",

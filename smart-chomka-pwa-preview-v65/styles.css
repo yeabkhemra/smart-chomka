@@ -2160,6 +2160,9 @@ p {
   margin: 0;
   padding-left: 1.15rem;
   color: #425349;
+  font-size: 1.25rem;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
 }
 
 .ai-response-section li,

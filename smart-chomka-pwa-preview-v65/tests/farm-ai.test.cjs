@@ -39,6 +39,18 @@ test('uses the server-side Bedrock key without sending it to the client', async 
     assert.deepEqual(res.body.products, []);
     assert.ok(JSON.parse(request.options.body).messages[0].content.includes('Never advise watering already wet'));
     assert.ok(!JSON.stringify(res.body).includes('test-bedrock-key'));
+
+    global.fetch = async () => ({ ok: true, json: async () => ({ choices: [{ message: { content: 'ខ្ញុំជួយកសិករដូរីយ៉ាន។' } }] }) });
+    const wording = response();
+    await handler({ method: 'POST', body: { question: 'តើអ្នកអាចជួយអ្វីខ្លះ?' } }, wording);
+    assert.ok(wording.body.answer.includes('កសិករដាំទុរេន'));
+    assert.ok(!wording.body.answer.includes('ដូរីយ៉ាន'));
+
+    global.fetch = async () => { throw new Error('Greeting should use the reviewed Khmer text'); };
+    const greeting = response();
+    await handler({ method: 'POST', body: { question: 'hi b' } }, greeting);
+    assert.equal(greeting.statusCode, 200);
+    assert.ok(greeting.body.answer.startsWith('សួស្តីបង!'));
   } finally {
     global.fetch = previousFetch;
     if (previousKey === undefined) delete process.env.BEDROCK_API_KEY;
