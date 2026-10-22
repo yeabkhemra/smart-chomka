@@ -1,4 +1,4 @@
-import './customer-account.js?v=116';
+import './customer-account.js?v=118';
 const PRIMARY_MODEL = {
   key: "efficientnet-b0-5class-original",
   label: "EfficientNetB0 5-class Smart Chomka model",

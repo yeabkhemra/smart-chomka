@@ -1,32 +1,32 @@
-const CACHE_NAME = "smart-chomka-pwa-v117";
+const CACHE_NAME = "smart-chomka-pwa-v118";
 
 const APP_ASSETS = [
-  "./customer-account.js?v=117",
+  "./customer-account.js?v=118",
   "./assets/market-farmer-hero.png",
-  "./market-refresh.css?v=117",
-  "./commerce-shop.js?v=117",
-  "./supplier-market.js?v=117",
-  "./supplier-catalog.js?v=117",
-  "./market.js?v=117",
-  "./market.css?v=117",
+  "./market-refresh.css?v=118",
+  "./commerce-shop.js?v=118",
+  "./supplier-market.js?v=118",
+  "./supplier-catalog.js?v=118",
+  "./market.js?v=118",
+  "./market.css?v=118",
   "./",
   "./index.html",
-  "./index.html?v=117",
+  "./index.html?v=118",
   "./reset.html",
   "./pdf-viewer.html",
-  "./pdf-viewer.html?v=117",
+  "./pdf-viewer.html?v=118",
   "./styles.css",
-  "./styles.css?v=117",
+  "./styles.css?v=118",
   "./pdf-viewer.css",
-  "./pdf-viewer.css?v=117",
+  "./pdf-viewer.css?v=118",
   "./app.js",
-  "./app.js?v=117",
+  "./app.js?v=118",
   "./realtime-config.js",
-  "./realtime-config.js?v=117",
+  "./realtime-config.js?v=118",
   "./pdf-viewer.js",
-  "./pdf-viewer.js?v=117",
+  "./pdf-viewer.js?v=118",
   "./manifest.webmanifest",
-  "./manifest.webmanifest?v=117",
+  "./manifest.webmanifest?v=118",
   "./assets/smart_chomka_logo.png",
   "./assets/farmer_ai_irrigation.svg",
   "./assets/farmer_remote_iot_ai.png",
@@ -137,7 +137,7 @@ self.addEventListener("notificationclick", (event) => {
         if (appClient) {
           return appClient.focus();
         }
-        return clients.openWindow("./index.html?v=117#home");
+        return clients.openWindow("./index.html?v=118#home");
       })
   );
 });
